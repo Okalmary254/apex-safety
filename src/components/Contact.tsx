@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { EMAILJS_CONFIG } from '../emailjs.config';
+// import { EMAILJS_CONFIG } from '../emailjs.config';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -13,28 +13,28 @@ export default function Contact() {
   const handle = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) =>
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-    try {
-      await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
-        from_name: form.name,
-        company:   form.company || 'N/A',
-        phone:     form.phone,
-        reply_to:  form.email || 'Not provided',
-        service:   form.service || 'Not specified',
-        message:   form.message || 'No additional message.',
-        to_email:  EMAILJS_CONFIG.RECIPIENT_EMAIL,
-      }, { publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-      setStatus('success');
-      setForm({ name:'', company:'', phone:'', email:'', service:'', message:'' });
-      setTimeout(() => setStatus('idle'), 7000);
-    } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : 'Please try again or call us directly.');
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 8000);
-    }
-  };
+  // const submit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setStatus('sending');
+  //   try {
+  //     // await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
+  //     //   from_name: form.name,
+  //     //   company:   form.company || 'N/A',
+  //     //   phone:     form.phone,
+  //     //   reply_to:  form.email || 'Not provided',
+  //     //   service:   form.service || 'Not specified',
+  //       message:   form.message || 'No additional message.',
+  //       to_email:  EMAILJS_CONFIG.RECIPIENT_EMAIL,
+  //     }, { publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+  //     setStatus('success');
+  //     setForm({ name:'', company:'', phone:'', email:'', service:'', message:'' });
+  //     setTimeout(() => setStatus('idle'), 7000);
+  //   } catch (err: unknown) {
+  //     setErrorMsg(err instanceof Error ? err.message : 'Please try again or call us directly.');
+  //     setStatus('error');
+  //     setTimeout(() => setStatus('idle'), 8000);
+  //   }
+  // };
 
   const isBusy = status === 'sending';
 
