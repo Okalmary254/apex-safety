@@ -111,7 +111,7 @@ export default function Contact() {
               </div>
             )}
 
-            <form ref={formRef} onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {/* <form ref={formRef} onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <div>
                   <label style={lbl}>Full Name *</label>
@@ -179,7 +179,7 @@ export default function Contact() {
               >
                 {isBusy ? 'Sending…' : 'Send Message →'}
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
